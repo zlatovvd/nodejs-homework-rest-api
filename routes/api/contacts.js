@@ -1,10 +1,13 @@
 const express = require("express");
 const controller = require("../../controllers/contacts");
-const { validateData, isValidId } = require("../../middlewares");
+const {
+  validateData,
+  validateFavorite,
+  isValidId,
+} = require("../../middlewares");
 const {
   addShema,
   updateShema,
-  updateFavoriteShema,
 } = require("../../Shems/contacts");
 
 const router = express.Router();
@@ -26,8 +29,8 @@ router.put(
 
 router.patch(
   "/:contactId/favorite",
-  validateData(updateFavoriteShema),
-  controller.updateFavorite
+  validateFavorite(),
+  controller.updateStatusContact
 );
 
 module.exports = router;

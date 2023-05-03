@@ -14,8 +14,4 @@ const updateShema = Joi.object({
   favorite: Joi.boolean(),
 });
 
-const updateFavoriteShema = Joi.object({
-  favorite:Joi.boolean(),
-})
-
-module.exports = { addShema, updateShema, updateFavoriteShema };
+module.exports = { addShema, updateShema };
