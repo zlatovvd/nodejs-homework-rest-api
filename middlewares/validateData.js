@@ -8,8 +8,7 @@ const validateData = (shema) => {
 
     const { error } = shema.validate(req.body);
     if (error) {
-      const missingField = error.details[0].path[0];
-      next(HttpError(400, `missing required field ${missingField}`));
+      next(HttpError(400, error.details[0].message));
     }
     next();
   };

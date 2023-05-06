@@ -4,24 +4,23 @@ const {
   validateData,
   validateFavorite,
   isValidId,
+  authenticate,
 } = require("../../middlewares");
-const {
-  addShema,
-  updateShema,
-} = require("../../Shems/contacts");
+const { addShema, updateShema } = require("../../models/contact");
 
 const router = express.Router();
 
-router.get("/", controller.getAll);
+router.get("/", authenticate, controller.getAll);
 
-router.get("/:contactId", isValidId, controller.getById);
+router.get("/:contactId", authenticate, isValidId, controller.getById);
 
-router.post("/", validateData(addShema), controller.add);
+router.post("/", authenticate, validateData(addShema), controller.add);
 
-router.delete("/:contactId", isValidId, controller.remove);
+router.delete("/:contactId", authenticate, isValidId, controller.remove);
 
 router.put(
   "/:contactId",
+  authenticate,
   isValidId,
   validateData(updateShema),
   controller.update
@@ -29,6 +28,7 @@ router.put(
 
 router.patch(
   "/:contactId/favorite",
+  authenticate,
   validateFavorite(),
   controller.updateStatusContact
 );

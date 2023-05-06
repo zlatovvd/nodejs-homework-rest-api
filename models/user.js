@@ -34,7 +34,6 @@ const authSchema = Joi.object({
   subscription: Joi.string(),
 });
 
-
 const User = model("user", userSchema);
 
 module.exports = { User, authSchema };
